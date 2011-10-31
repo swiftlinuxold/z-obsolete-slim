@@ -1,0 +1,3 @@
+Switch from Xfce terminal to ROXterm
+
+Switch from GDM3 to SLIM
