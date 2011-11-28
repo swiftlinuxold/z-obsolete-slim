@@ -29,3 +29,17 @@ os.system('apt-get remove -y gdm3')
 os.system('apt-get install -y slim')
 
 # Configure SLiM login manager
+
+# Create a directory for the Swift Linux theme
+os.mkdir('/usr/share/slim/themes/swift/')
+
+# Use the panel.png file from antiX Linux
+src = dir_develop + '/ui-login/usr_share_slim_themes_swift/panel.png'
+dest = '/usr/share/slim/themes/swift/panel.png'
+shutil.copy (src, dest)
+
+# Use the slim.theme file from antiX Linux
+src = dir_develop + '/ui-login/usr_share_slim_themes_swift/slim.theme'
+dest = '/usr/share/slim/themes/swift/slim.theme'
+shutil.copy (src, dest)
+
