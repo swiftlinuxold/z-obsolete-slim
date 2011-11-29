@@ -33,6 +33,12 @@ os.system('apt-get install -y slim')
 # ============================
 # Configure SLiM login manager
 
+# Delete the debian-moreblue, debian-moreblue-orbit, debian-spacefun, and default themes
+os.rmdir('/usr/share/slim/themes/debian-moreblue/')
+os.rmdir('/usr/share/slim/themes/debian-moreblue-orbit/')
+os.rmdir('/usr/share/slim/themes/debian-spacefun/')
+os.rmdir('/usr/share/slim/themes/default/')
+
 # If /usr/share/slim/themes/swift/ exists, delete it.
 if (os.path.exists('/usr/share/slim/themes/swift/')):
 	os.rmdir('/usr/share/slim/themes/swift/')
