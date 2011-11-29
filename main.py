@@ -32,21 +32,26 @@ os.system('apt-get install -y slim')
 
 # ============================
 # Configure SLiM login manager
+import shutil
 
 # Delete the debian-moreblue, debian-moreblue-orbit, debian-spacefun, and default themes
-os.rmdir('/usr/share/slim/themes/debian-moreblue/')
-os.rmdir('/usr/share/slim/themes/debian-moreblue-orbit/')
-os.rmdir('/usr/share/slim/themes/debian-spacefun/')
-os.rmdir('/usr/share/slim/themes/default/')
+# Checking for their existence is redundant but avoids error messages when testing multiple times on the desktop
+if (os.path.exists('/usr/share/slim/themes/debian-moreblue/')):
+	shutil.rmtree('/usr/share/slim/themes/debian-moreblue/')
+if (os.path.exists('/usr/share/slim/themes/debian-moreblue-orbit/')):
+	shutil.rmtree('/usr/share/slim/themes/debian-moreblue-orbit/')
+if (os.path.exists('/usr/share/slim/themes/debian-spacefun/')):
+	shutil.rmtree('/usr/share/slim/themes/debian-spacefun/')
+if (os.path.exists('/usr/share/slim/themes/default/')):
+	shutil.rmtree('/usr/share/slim/themes/default/')
 
 # If /usr/share/slim/themes/swift/ exists, delete it.
 if (os.path.exists('/usr/share/slim/themes/swift/')):
-	os.rmdir('/usr/share/slim/themes/swift/')
+	shutil.rmtree('/usr/share/slim/themes/swift/')
 
 # Create /usr/share/slim/themes/swift/
 os.mkdir('/usr/share/slim/themes/swift/')
 
-import shutil
 # Use the panel.png file from antiX Linux
 src = dir_develop + '/ui-login/usr_share_slim_themes_swift/panel.png'
 dest = '/usr/share/slim/themes/swift/panel.png'
