@@ -62,6 +62,15 @@ src = dir_develop + '/ui-login/usr_share_slim_themes_swift/slim.theme'
 dest = '/usr/share/slim/themes/swift/slim.theme'
 shutil.copy (src, dest)
 
+# Provide the SLiM wallpaper
+# WARNING: If the background.jpg file is not present in the theme directory to be used,
+# SLiM will NOT work.
+if (os.path.exists('/usr/share/slim/themes/swift/background.jpg')):
+	os.remove('/usr/share/slim/themes/swift/background.jpg')
+src = dir_develop + '/edition-regular/login-regular.jpg'
+dest = '/usr/share/slim/themes/swift/background.jpg'
+shutil.copy (src, dest)
+
 # Replace /etc/slim.conf
 # Changes the available sessions (DE/WM)
 # Changes the default theme
