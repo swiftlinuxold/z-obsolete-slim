@@ -27,7 +27,7 @@ else:
 # THIS IS THE SCRIPT FOR REPLACING THE DEFAULT LMDE LOGIN MANAGER WITH A LIGHTER ONE.
 
 # Remove GDM3 login manager
-os.system('apt-get remove -y gdm3')
+os.system('apt-get purge -y gdm3')
 
 # Install SLiM login manager
 os.system('apt-get install -y slim')
