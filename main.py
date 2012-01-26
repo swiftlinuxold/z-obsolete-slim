@@ -81,3 +81,14 @@ src = dir_develop + '/ui-login/etc/slim.conf'
 dest = '/etc/slim.conf'
 shutil.copy (src, dest)
 
+# Replace /etc/adduser.conf and /etc/group
+# The original /etc/adduser.conf and /etc/group do NOT enable sound.
+# The original LMDE setup relies on GDM3 to enable many features that
+# are disabled upon removing GDM3.
+src = dir_develop + '/ui-login/etc/adduser.conf'
+dest = '/etc/adduser.conf'
+shutil.copy (src, dest)
+
+src = dir_develop + '/ui-login/etc/group'
+dest = '/etc/group'
+shutil.copy (src, dest)
