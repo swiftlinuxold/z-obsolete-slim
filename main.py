@@ -88,10 +88,32 @@ shutil.copy (src, dest)
 # The original /etc/adduser.conf and /etc/group do NOT enable sound.
 # The original LMDE setup relies on GDM3 to enable many features that
 # are disabled upon removing GDM3.
+
+def change_text (filename, text_old, text_new):
+    # Replaces text within a file
+    text=open(filename, 'r').read()
+    text = text.replace(text_old, text_new)
+    open(filename, "w").write(text)
+
+def copy_file (file_old, file_new, text_old, text_new):
+    # Copies a file and replaces text within the new file
+    ret = os.access(file_new, os.F_OK)
+    if (ret):
+        os.remove (file_new)
+    shutil.copy2 (file_old, file_new)
+    change_text(file_new, text_old, text_new)
+
 src = dir_develop + '/ui-login/etc/adduser.conf'
 dest = '/etc/adduser.conf'
 shutil.copy (src, dest)
 
-src = dir_develop + '/ui-login/etc/group'
-dest = '/etc/group'
-shutil.copy (src, dest)
+if (is_chroot):
+    src = dir_develop + '/ui-login/etc/group'
+    dest = '/etc/group'
+    shutil.copy (src, dest)
+else:
+    file1 = dir_develop + '/ui-login/etc/group'
+    file2 = '/etc/group'
+    text1 = 'mint'
+    text2 = uname
+    copy_file (file1, file2, text1, text2)
