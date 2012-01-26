@@ -29,6 +29,9 @@ else:
 # Remove GDM3 login manager
 os.system('apt-get purge -y gdm3')
 
+if (os.path.exists('/usr/share/gdm')):
+	shutil.rmtree('/usr/share/gdm')
+
 # Install SLiM login manager
 os.system('apt-get install -y slim')
 
