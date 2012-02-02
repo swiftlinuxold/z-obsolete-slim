@@ -103,10 +103,32 @@ def copy_file (file_old, file_new, text_old, text_new):
     shutil.copy2 (file_old, file_new)
     change_text(file_new, text_old, text_new)
 
+print "Changing permissions to adjust for the absence of GDM"
+
+# Gives YOU sudo capability
+os.system ('chmod u+w /etc/sudoers')
+file_sudoers = open('/etc/sudoers', 'a')
+addition = '\n#Giving user access to sudo\n'
+if (is_chroot):
+    print "Adding mint to /etc/sudoers"
+    addition = addition + 'mint'
+else:
+    print "Adding " + uname + " to /etc/sudoers"
+    addition = addition + uname
+    
+addition = addition + '\tALL=(ALL:ALL) ALL'
+print is_chroot
+print addition
+file_sudoers.write (addition)
+file_sudoers.close()
+os.system ('chmod u-w /etc/sudoers')
+
+# Gives new users the permissions needed for functions (audio, printing, etc.)
 src = dir_develop + '/ui-login/etc/adduser.conf'
 dest = '/etc/adduser.conf'
 shutil.copy (src, dest)
 
+# Gives YOU the permissions needed for functions (audio, printing, etc.)
 if (is_chroot):
     src = dir_develop + '/ui-login/etc/group'
     dest = '/etc/group'
