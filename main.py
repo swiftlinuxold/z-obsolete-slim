@@ -122,7 +122,7 @@ shutil.copy (src, dest)
 # addition = addition + '\tALL=(ALL:ALL) ALL'
 # file_sudoers.write (addition)
 # file_sudoers.close()
-os.system ('chmod u-w /etc/sudoers')
+os.system ('chmod 440 /etc/sudoers')
 
 # Gives new users the permissions needed for functions (audio, printing, etc.)
 src = dir_develop + '/ui-login/etc/adduser.conf'
