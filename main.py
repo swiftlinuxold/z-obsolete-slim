@@ -107,20 +107,21 @@ print "Changing permissions to adjust for the absence of GDM"
 
 # Gives YOU sudo capability
 os.system ('chmod u+w /etc/sudoers')
-file_sudoers = open('/etc/sudoers', 'a')
-addition = '\n#Giving user access to sudo\n'
-if (is_chroot):
-    print "Adding mint to /etc/sudoers"
-    addition = addition + 'mint'
-else:
-    print "Adding " + uname + " to /etc/sudoers"
-    addition = addition + uname
+src = dir_develop + '/ui-login/etc/sudoers'
+dest = '/etc/sudoers'
+shutil.copy (src, dest)
+# file_sudoers = open('/etc/sudoers', 'a')
+# addition = '\n#Giving user access to sudo\n'
+# if (is_chroot):
+    # print "Adding mint to /etc/sudoers"
+    # addition = addition + 'mint'
+# else:
+    # print "Adding " + uname + " to /etc/sudoers"
+    # addition = addition + uname
     
-addition = addition + '\tALL=(ALL:ALL) ALL'
-print is_chroot
-print addition
-file_sudoers.write (addition)
-file_sudoers.close()
+# addition = addition + '\tALL=(ALL:ALL) ALL'
+# file_sudoers.write (addition)
+# file_sudoers.close()
 os.system ('chmod u-w /etc/sudoers')
 
 # Gives new users the permissions needed for functions (audio, printing, etc.)
