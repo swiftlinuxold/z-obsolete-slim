@@ -110,13 +110,13 @@ shutil.copy (src, dest)
 os.system ('chmod 440 /etc/sudoers')
 
 # Gives new users the permissions needed for functions (audio, printing, etc.)
-src = dir_develop + '/ui-login/etc/adduser.conf'
+src = dir_develop + '/ui-login/etc/adduser-lmde.conf'
 dest = '/etc/adduser.conf'
 shutil.copy (src, dest)
 
 # Gives YOU the permissions needed for functions (audio, printing, etc.)
-if (is_chroot):
-    uname = 'mint'
-usermod -a -G dialout,cdrom,floppy,audio,video,plugdev,users,games,fax,dip,fuse,lpadmin,sambashare,tape,adm,admin,netdev
-
-
+src = dir_develop + '/ui-login/etc/group-lmde'
+dest = '/etc/group'
+shutil.copy (src, dest)
+if (not(is_chroot)):
+    change_text (dest, 'mint', uname)
