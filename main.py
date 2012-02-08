@@ -29,9 +29,6 @@ else:
 # Remove GDM3 login manager
 os.system('apt-get purge -y gdm3')
 
-# if (os.path.exists('/usr/share/gdm')):
-#	shutil.rmtree('/usr/share/gdm')
-
 # Install SLiM login manager
 os.system('apt-get install -y slim')
 
@@ -110,18 +107,6 @@ os.system ('chmod u+w /etc/sudoers')
 src = dir_develop + '/ui-login/etc/sudoers'
 dest = '/etc/sudoers'
 shutil.copy (src, dest)
-# file_sudoers = open('/etc/sudoers', 'a')
-# addition = '\n#Giving user access to sudo\n'
-# if (is_chroot):
-    # print "Adding mint to /etc/sudoers"
-    # addition = addition + 'mint'
-# else:
-    # print "Adding " + uname + " to /etc/sudoers"
-    # addition = addition + uname
-    
-# addition = addition + '\tALL=(ALL:ALL) ALL'
-# file_sudoers.write (addition)
-# file_sudoers.close()
 os.system ('chmod 440 /etc/sudoers')
 
 # Gives new users the permissions needed for functions (audio, printing, etc.)
@@ -131,12 +116,7 @@ shutil.copy (src, dest)
 
 # Gives YOU the permissions needed for functions (audio, printing, etc.)
 if (is_chroot):
-    src = dir_develop + '/ui-login/etc/group'
-    dest = '/etc/group'
-    shutil.copy (src, dest)
-else:
-    file1 = dir_develop + '/ui-login/etc/group'
-    file2 = '/etc/group'
-    text1 = 'mint'
-    text2 = uname
-    copy_file (file1, file2, text1, text2)
+    uname = 'mint'
+usermod -a -G dialout,cdrom,floppy,audio,video,plugdev,users,games,fax,dip,fuse,lpadmin,sambashare,tape,adm,admin,netdev
+
+
